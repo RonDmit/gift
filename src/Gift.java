@@ -25,6 +25,12 @@ public class Gift {
         this.dropChange = dropChange;
         listID.add(ID);
     }
+    public void changeNumberOfGifts(int numberOfGifts){
+        this.numberOfGifts = numberOfGifts;
+    }
+    public void changeDropChange(double dropChange){
+        this.dropChange = dropChange;
+    }
 
     public String getID() {
         return ID;
