@@ -67,4 +67,35 @@ public class Gift {
         }
         return false;
     }
+    public static String giftСhoice(Gift... arr){
+        double sum = 0;
+        String result = "";
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i].getNumberOfGifts() > 0) {
+                sum += arr[i].getDropChange();
+            }
+        }
+        double random = Math.random() * sum;
+        sum = 0;
+        for (int i = 0; i < arr.length; i++){
+            sum += arr[i].getDropChange();
+            if (random <= sum) {
+                result = Gift.showGifts(arr, "Разыгрывается: ");
+                result += Winner.GenerateWinner() + "\n";
+                result += "Поздравляем, Ваш приз - " + arr[i].getNameGift() + "!!!\n";
+                arr[i].changeNumberOfGifts(arr[i].getNumberOfGifts() - 1);
+                result += Gift.showGifts(arr, "Осталось в розыгрыше: ");
+                break;
+            }
+        }
+        return result;
+    }
+    public static String showGifts(Gift[] arr, String message){
+        String result = message;
+        for (int i = 0; i < arr.length; i++){
+            result += arr[i].getNameGift() + ": " + arr[i].getNumberOfGifts() + " шт. ";
+        }
+        return result + "\n";
+    }
+
 }
